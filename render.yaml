@@ -1,6 +1,6 @@
 databases:
   - name: shopora-db
-    plan: free
+    plan: starter
     databaseName: ecommerce
     user: ecommerce
 
@@ -8,7 +8,7 @@ services:
   - type: web
     name: shopora-backend
     runtime: python
-    plan: free
+    plan: starter
     rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
@@ -42,7 +42,7 @@ services:
   - type: web
     name: shopora-frontend
     runtime: static
-    plan: free
+    plan: starter
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: dist
