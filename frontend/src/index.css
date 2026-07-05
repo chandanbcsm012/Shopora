@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens for the storefront. Centralizing these as theme variables
+ * (rather than picking gray-900/gray-600/rounded/etc. ad hoc per page, as
+ * before) is what makes "redesign one page" not drift visually from the
+ * rest of the app over time.
+ */
+@theme {
+  /* Brand + neutral scale. Neutral-driven UI (per Linear/Vercel/Stripe) —
+     one accent color used sparingly for primary actions/focus, not for
+     decoration. */
+  --color-brand-50: oklch(0.97 0.02 260);
+  --color-brand-100: oklch(0.93 0.04 260);
+  --color-brand-200: oklch(0.86 0.07 260);
+  --color-brand-300: oklch(0.76 0.1 260);
+  --color-brand-400: oklch(0.65 0.14 260);
+  --color-brand-500: oklch(0.55 0.18 260);
+  --color-brand-600: oklch(0.47 0.18 260);
+  --color-brand-700: oklch(0.4 0.16 260);
+
+  /* Semantic status colors: one for each state a badge/alert can be in,
+     so "success" or "danger" always means the same color everywhere. */
+  --color-success-50: oklch(0.96 0.03 150);
+  --color-success-600: oklch(0.55 0.14 150);
+  --color-success-700: oklch(0.45 0.13 150);
+  --color-warning-50: oklch(0.97 0.04 85);
+  --color-warning-600: oklch(0.65 0.15 75);
+  --color-warning-700: oklch(0.5 0.14 70);
+  --color-danger-50: oklch(0.96 0.03 25);
+  --color-danger-600: oklch(0.58 0.21 25);
+  --color-danger-700: oklch(0.48 0.19 25);
+  --color-info-50: oklch(0.96 0.02 250);
+  --color-info-600: oklch(0.55 0.15 250);
+  --color-info-700: oklch(0.45 0.14 250);
+
+  /* One radius scale used everywhere instead of mixing rounded/rounded-md. */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  /* A restrained shadow scale for elevation (cards vs. popovers/menus). */
+  --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.04), 0 1px 3px 0 rgb(0 0 0 / 0.06);
+  --shadow-popover: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 10px 15px -3px rgb(0 0 0 / 0.08);
+
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* Focus-visible ring used by every interactive element (buttons, links,
+   inputs). Defined once so keyboard focus is always obvious and always
+   looks the same — a WCAG 2.2 "focus visible" requirement, and one of the
+   most commonly-missed a11y basics in hand-rolled Tailwind UI. */
+@layer base {
+  html {
+    font-family: var(--font-sans);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+}
